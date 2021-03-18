@@ -1,0 +1,124 @@
+﻿<UserControl x:Name="ctrlMain"
+             x:Class="UserCRUD.Controls.CRUDUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserCRUD.Controls"
+             xmlns:xcm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:converter="clr-namespace:UserCRUD.Converters"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:lang="clr-namespace:UserCRUD.Languages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:UserNameToBooleanConverter x:Key="UserNameToBooleanConverter"/>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converter:GenderToStringConverter x:Key="GenderToStringConverter"/>
+
+        <CollectionViewSource x:Key="cvsUser" Source="{Binding UserList}">
+            <CollectionViewSource.SortDescriptions>
+                <xcm:SortDescription PropertyName="Age"/>
+                <xcm:SortDescription PropertyName="Gender"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- User add panel -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{DynamicResource UserAddString}"
+                       FontSize="{DynamicResource TextTitleSize}"/>
+                <local:UserInfoPanel Grid.Row="1" Margin="15" DataContext="{Binding AddingUser}"/>
+            </Grid>
+
+            <!-- UserList -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock FontSize="{DynamicResource TextTitleSize}" Text="{DynamicResource UserListString}"/>
+                <StackPanel Margin="0,0,20,0"
+                            HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <!-- Language -->
+                    <ComboBox x:Name="cbLanguage"
+                              MinWidth="70" ItemsSource="{x:Static lang:LanguageHelper.LanguageList}"
+                              SelectedItem="{Binding CurrentLang}" SelectionChanged="cbLanguage_SelectionChanged"/>
+                </StackPanel>
+                <ListView x:Name="lvUsers" Grid.Row="1" Margin="20"
+                          ItemsSource="{Binding Source={StaticResource cvsUser}}"
+                          SelectedItem="{Binding SelectedUser}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn Width="100" Header="{DynamicResource UserNameString}" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn x:Name="gvGender" Width="100" Header="{DynamicResource UserGenderString}"
+                                            DisplayMemberBinding="{Binding Gender, Converter={StaticResource GenderToStringConverter}}"/>
+                            <GridViewColumn Width="100" Header="{DynamicResource UserAgeString}" DisplayMemberBinding="{Binding Age}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="{DynamicResource AddString}"
+                        Command="{Binding CreateUserCommand}"
+                        IsEnabled="{Binding CurrentUser.Name, Converter={StaticResource UserNameToBooleanConverter}}"/>
+                <Button Content="{DynamicResource EditString}"
+                        Command="{Binding UpdateUserCommand}"/>
+            </StackPanel>
+            <Button Grid.Column="1" Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource DeleteString}"
+                    Command="{Binding DeleteUserCommand}"/>
+            <Button Grid.Column="1" Margin="0,0,10,0"
+                    HorizontalAlignment="Right"
+                    Content="{DynamicResource NextPageString}"
+                    Command="{Binding GotoCustomControlPageCommand}"/>
+        </Grid>
+        
+        <!-- Edit User -->
+        <Grid Grid.RowSpan="2" Background="#33000000"
+              Visibility="{Binding UserEditViewVisibility,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Background="White">
+                <local:UserInfoPanel DataContext="{Binding EditingUser}"
+                                     Margin="10"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="{DynamicResource ConfirmString}"
+                            Command="{Binding ConfirmEditUserCommand}"/>
+                    <Button Content="{DynamicResource CancelString}"
+                            Command="{Binding CancelEditUserCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

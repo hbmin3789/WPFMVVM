@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- UserList -->
+    <!-- Buttons -->
+    <sys:String x:Key="AddString">추가</sys:String>
+    <sys:String x:Key="EditString">수정</sys:String>
+    <sys:String x:Key="DeleteString">삭제</sys:String>
+    <sys:String x:Key="ConfirmString">확인</sys:String>
+    <sys:String x:Key="CancelString">취소</sys:String>
+    <sys:String x:Key="NextPageString">다음 페이지</sys:String>
+
+    <!-- Descriptions -->
+    <sys:String x:Key="UserAddString">유저 추가</sys:String>
+    <sys:String x:Key="UserListString">유저 목록</sys:String>
+    <sys:String x:Key="UserNameString">이름</sys:String>
+    <sys:String x:Key="UserAgeString">나이</sys:String>
+    <sys:String x:Key="UserGenderString">성별</sys:String>
+    <sys:String x:Key="UserGenderMaleString">남자</sys:String>
+    <sys:String x:Key="UserGenderFemaleString">여자</sys:String>
+    
+    <!-- Custom Controls Page -->
+    <!-- Buttons -->
+    <sys:String x:Key="PrevPageString">이전 페이지</sys:String>
+
+    <!-- Control Descriptions -->
+    <sys:String x:Key="CustomControlTitleString">유저 컨트롤</sys:String>
+    <sys:String x:Key="TypingAnimationString">타이핑 애니메이션</sys:String>
+    <sys:String x:Key="FastTypingAnimationString">빠른 타이핑 애니메이션</sys:String>
+    
+    
+
+</ResourceDictionary>

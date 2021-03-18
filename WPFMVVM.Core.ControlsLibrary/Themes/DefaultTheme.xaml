@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFMVVM.Core.ControlsLibrary.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="HudTextBlockTheme.xaml"/>
+        <ResourceDictionary Source="ListviewTheme.xaml"/>
+        <ResourceDictionary Source="FrameTheme.xaml"/>
+        <ResourceDictionary Source="ButtonTheme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

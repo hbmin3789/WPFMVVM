@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WPFMVVM.Core.ControlsLibrary.Themes"
+                    xmlns:converter="clr-namespace:WPFMVVM.Core.ControlsLibrary.Converters"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--https://stackoverflow.com/questions/2186933/wpf-animation-binding-to-the-to-attribute-of-storyboard-animation
+        애니메이션 샘플 코드 -->
+
+</ResourceDictionary>

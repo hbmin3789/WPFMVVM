@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="UserCRUD.Controls.CustomControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserCRUD.Controls"
+             xmlns:hud="clr-namespace:WPFMVVM.Core.ControlsLibrary.CustomControls;assembly=WPFMVVM.Core.ControlsLibrary"
+             xmlns:animation="clr-namespace:WPFMVVM.Core.ControlsLibrary.Animation;assembly=WPFMVVM.Core.ControlsLibrary"
+             xmlns:model="clr-namespace:ViewModelLib.Models;assembly=ViewModelLib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="gdMain" Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <animation:AnimationGrid>
+            <StackPanel Margin="20"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <hud:HudBlinkTextBlock HorizontalAlignment="Left" Foreground="White" FontSize="{StaticResource TextTitleSize}"
+                                       Text="{DynamicResource CustomControlTitleString}"/>
+                <hud:HudTypingTextBlock Margin="0,10,0,0" AnimationDuration="0:0:0:2"
+                                        FontSize="{StaticResource TextSubTitleSize}"
+                                        Text="{DynamicResource TypingAnimationString}" 
+                                        Foreground="White"/>
+                <hud:HudTypingTextBlock Margin="0,10,0,0" AnimationDuration="0:0:0:0.5"
+                                        FontSize="{StaticResource TextSubTitleSize}"
+                                        Text="{DynamicResource FastTypingAnimationString}" 
+                                        Foreground="White"/>
+            </StackPanel>
+            <hud:HudButtonBase Margin="30" Width="150" Height="40"
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                               Content="{DynamicResource PrevPageString}"
+                               Command="{Binding GotoUserListViewCommand}"/>
+        </animation:AnimationGrid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <animation:AnimationGrid>
+                <hud:HudBlinkTextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                       Foreground="White"
+                                       FontSize="{DynamicResource TextTitleSize}"
+                                       Text="{DynamicResource UserListString}"/>
+            </animation:AnimationGrid>
+            <ListView Grid.Row="1" Margin="0,20,0,0"
+                      BorderThickness="0"
+                      HorizontalAlignment="Left"
+                      ItemContainerStyle="{StaticResource ListViewItemAnimationStyle}"
+                      Background="Transparent"
+                      ItemsSource="{Binding UserList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type model:User}">
+                        <TextBlock Foreground="White"
+                                   FontSize="{DynamicResource TextDescriptionSize}"
+                                   Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

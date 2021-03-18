@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- UserList -->
+    <!-- Buttons -->
+    <sys:String x:Key="AddString">Add</sys:String>
+    <sys:String x:Key="EditString">Edit</sys:String>
+    <sys:String x:Key="DeleteString">Delete</sys:String>
+    <sys:String x:Key="ConfirmString">Confirm</sys:String>
+    <sys:String x:Key="CancelString">Cancel</sys:String>
+    <sys:String x:Key="NextPageString">Next Page</sys:String>
+
+    <!-- Descriptions -->
+    <sys:String x:Key="UserAddString">AddUser</sys:String>
+    <sys:String x:Key="UserListString">User List</sys:String>
+    <sys:String x:Key="UserNameString">Name</sys:String>
+    <sys:String x:Key="UserAgeString">Age</sys:String>
+    <sys:String x:Key="UserGenderString">Gender</sys:String>
+    <sys:String x:Key="UserGenderMaleString">Male</sys:String>
+    <sys:String x:Key="UserGenderFemaleString">Female</sys:String>
+
+    <!-- Custom Controls Page -->
+    <!-- Buttons -->
+    <sys:String x:Key="PrevPageString">Prev Page</sys:String>
+    
+    <!-- Control Descriptions -->
+    <sys:String x:Key="CustomControlTitleString">User Controls</sys:String>
+    <sys:String x:Key="TypingAnimationString">Typing Animation</sys:String>
+    <sys:String x:Key="FastTypingAnimationString">Fast Typing Animation</sys:String>
+
+</ResourceDictionary>

@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converter="clr-namespace:WPFMVVM.Core.ControlsLibrary.Converters"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:WPFMVVM.Core.ControlsLibrary.CustomControls">
+    <converter:ReverseNumberSignConverter x:Key="ReverseNumberSignConverter"/>
+    <ControlTemplate x:Key="HudBlinkTextBlockTemplate" TargetType="controls:HudBlinkTextBlock">
+        <Grid x:Name="gdMain">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="3"/>
+            </Grid.RowDefinitions>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="AnimationGroup">
+                    <VisualState x:Name="AnimationStarted">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.Y)"
+                                             Storyboard.TargetName="gdUnderline"
+                                             Duration="0:0:0:0.3" To="0"/>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             Storyboard.TargetName="gdUnderline"
+                                             Duration="0:0:0:0" To="1"/>
+                            <!-- blink animation to text -->
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ctrlContent"
+                                                           Storyboard.TargetProperty="Opacity">
+                                <EasingDoubleKeyFrame KeyTime="00:0:0.4" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="00:0:0.5" Value="0.8"/>
+                                <EasingDoubleKeyFrame KeyTime="00:0:0.6" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="00:0:0.7" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid x:Name="gdUnderline" Grid.RowSpan="2" Opacity="0">
+                <Grid.RenderTransform>
+                    <TranslateTransform Y="{Binding ElementName=gdMain,Path=ActualHeight,Converter={StaticResource ReverseNumberSignConverter}}"/>
+                </Grid.RenderTransform>
+                <Rectangle Fill="White" VerticalAlignment="Bottom"
+                                           Width="{Binding ElementName=gdMain,Path=ActualWidth}" Height="3"/>
+            </Grid>
+            <ContentPresenter x:Name="ctrlContent" Opacity="0"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Text}"/>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="HudTypingTextBlockTemplate" TargetType="controls:HudTypingTextBlock">
+        <Grid>
+            <TextBlock x:Name="tbContent"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="controls:HudBlinkTextBlock">
+        <Setter Property="Template" Value="{StaticResource HudBlinkTextBlockTemplate}"/>
+    </Style>
+
+    <Style x:Key="HudTypingTextBlockDefaultStyle" TargetType="controls:HudTypingTextBlock">
+        <Setter Property="Template" Value="{StaticResource HudTypingTextBlockTemplate}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <Style TargetType="controls:HudTypingTextBlock">
+        <Setter Property="Template" Value="{StaticResource HudTypingTextBlockTemplate}"/>
+    </Style>
+</ResourceDictionary>
