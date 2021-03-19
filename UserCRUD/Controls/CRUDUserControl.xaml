@@ -91,7 +91,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="{DynamicResource AddString}"
                         Command="{Binding CreateUserCommand}"
-                        IsEnabled="{Binding CurrentUser.Name, Converter={StaticResource UserNameToBooleanConverter}}"/>
+                        IsEnabled="{Binding AddingUser.Name, Converter={StaticResource UserNameToBooleanConverter}}"/>
                 <Button Content="{DynamicResource EditString}"
                         Command="{Binding UpdateUserCommand}"/>
             </StackPanel>

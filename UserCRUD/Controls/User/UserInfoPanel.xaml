@@ -44,7 +44,7 @@
                                  Text="{Binding Age,  UpdateSourceTrigger=PropertyChanged}"/>
 
                     <StackPanel Orientation="Horizontal"
-                                    Height="{Binding ElementName=tbUserGender, Path=ActualHeight}">
+                                Height="{Binding ElementName=tbUserGender, Path=ActualHeight}">
                         <StackPanel.Resources>
                             <Style TargetType="RadioButton">
                                 <Setter Property="FontSize" Value="15"/>
@@ -53,9 +53,11 @@
                             </Style>
                         </StackPanel.Resources>
                         <RadioButton Content="{DynamicResource UserGenderMaleString}"
-                                     IsChecked="{Binding Gender,Converter={StaticResource EGenderToBooleanConverter}, ConverterParameter=male}"/>
+                                     IsChecked="{Binding Gender,Converter={StaticResource EGenderToBooleanConverter},
+                                                                ConverterParameter=male}"/>
                         <RadioButton Content="{DynamicResource UserGenderFemaleString}"
-                                     IsChecked="{Binding Gender,Converter={StaticResource EGenderToBooleanConverter}, ConverterParameter=female}"/>
+                                     IsChecked="{Binding Gender,Converter={StaticResource EGenderToBooleanConverter}, 
+                                                                ConverterParameter=female}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
