@@ -66,7 +66,7 @@ namespace ViewModelLib.ViewModels
 
         #region Commands
 
-        public ICommand CreateUserCommand { get; set; }
+        public ICommand AddUserCommand { get; set; }
         public ICommand DeleteUserCommand { get; set; }
         public ICommand UpdateUserCommand { get; set; }
 
@@ -92,7 +92,7 @@ namespace ViewModelLib.ViewModels
 
         private void InitCommands()
         {
-            CreateUserCommand = new MyCommand(CreateUser);
+            AddUserCommand = new MyCommand(AddUser);
             DeleteUserCommand = new MyCommand(DeleteUser);
             UpdateUserCommand = new MyCommand(UpdateUser);
 
@@ -106,7 +106,7 @@ namespace ViewModelLib.ViewModels
 
         #region Command Methods
 
-        private void CreateUser(object parameter)
+        private void AddUser(object parameter)
         {
             UserList.Add(AddingUser.Clone() as User);
         }
@@ -130,8 +130,11 @@ namespace ViewModelLib.ViewModels
 
         private void ConfirmEditUser(object obj)
         {
-            UserList[UserList.IndexOf(SelectedUser)] = EditingUser.Clone() as User;
-            UserEditViewVisibility = false;
+            if(EditingUser.Name.Length > 0)
+            {
+                UserList[UserList.IndexOf(SelectedUser)] = EditingUser.Clone() as User;
+                UserEditViewVisibility = false;
+            }
         }
 
         private void CancelEditUser(object obj)

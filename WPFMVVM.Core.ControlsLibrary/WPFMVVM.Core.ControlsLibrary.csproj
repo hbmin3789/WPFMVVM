@@ -57,7 +57,7 @@
   <ItemGroup>
     <Compile Include="Animation\AnimationBase.cs" />
     <Compile Include="Animation\AnimationFrame.cs" />
-    <Compile Include="Animation\AnimationPanel.cs" />
+    <Compile Include="Animation\AnimationGrid.cs" />
     <Compile Include="Animation\AnimationState.cs" />
     <Compile Include="Animation\EAnimationStartTrigger.cs" />
     <Compile Include="Animation\IAnimatable.cs" />

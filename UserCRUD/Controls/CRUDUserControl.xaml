@@ -90,7 +90,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
                 <Button Content="{DynamicResource AddString}"
-                        Command="{Binding CreateUserCommand}"
+                        Command="{Binding AddUserCommand}"
                         IsEnabled="{Binding AddingUser.Name, Converter={StaticResource UserNameToBooleanConverter}}"/>
                 <Button Content="{DynamicResource EditString}"
                         Command="{Binding UpdateUserCommand}"/>
